@@ -1,4 +1,4 @@
-- 👋 Hi, I’m @HUGOXBACA
+- 👋 Hi, I’m HUGO BACA
 - 👀 I’m interested in machine learning, cyber security, and cloud technologies.
 - 🧠 I’m currently learning machine learning and how to use Azure!
 - 🤝 I’m looking to collaborate on binary threat detection, machine learning for data, and social media API projects.
