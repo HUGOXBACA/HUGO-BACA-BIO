@@ -1,5 +1,5 @@
 - 👋 Hi, I’m HUGO BACA
-- 👀 I’m interested in machine learning, cyber security, and cloud technologies.
-- 🧠 I’m currently learning machine learning and how to use Azure!
-- 🤝 I’m looking to collaborate on binary threat detection, machine learning for data, and social media API projects.
-- 📫 How to reach me email: hugo123baca@gmail.com
+- 👀 I’m interested in machine learning, infrastructure, and quantitative analysis.
+- 🧠 I’m currently learning machine learning, data cleaning, and web scraping.
+- 🤝 I’m looking to connect with others. 
+- 📫 How to reach me email: hugo123baca@gmail.com or LinkedIn.
