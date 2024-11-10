@@ -1,5 +1,5 @@
 - 👋 Hi, I’m HUGO BACA
-- 👀 I’m interested in machine learning, infrastructure, and quantitative analysis.
-- 🧠 I’m currently learning machine learning, data cleaning, and web scraping.
-- 🤝 I’m looking to connect with others. 
+- 👀 I’m interested in machine learning, infrastructure systems, and quantitative mathematics(Stochastic Processes, reinforcement learning, linear algebra, etc).
+- 🧠 I’m currently learning financial engineering, reverse engineering (c/c++, bash, assembly), and building projects with esp32/8266.
+- 🤝 I’m looking to develop projects with others. 
 - 📫 How to reach me email: hugo123baca@gmail.com or LinkedIn.
