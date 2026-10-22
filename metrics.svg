@@ -65,7 +65,7 @@
                 </h2>
                 <div class="row fill-width">
                     <section>
-                        <div class="introduction">ML Engineer · I like Math · I make it happen; The rest is hyperparameter theater.</div>
+                        <div class="introduction">ML Engineer · I like Math · I make it happen—then rename data leakage “alpha.”</div>
                     </section>
                 </div>
             </section>
@@ -1868,7 +1868,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 22 Oct 2026, 19:30:38 (timezone Atlantic/Reykjavik) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 22 Oct 2026, 19:42:46 (timezone Atlantic/Reykjavik) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
