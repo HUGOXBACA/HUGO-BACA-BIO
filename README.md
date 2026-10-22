@@ -1,5 +1,8 @@
 - 👋 Hi, I’m HUGO BACA
-- 👀 I’m interested in machine learning, infrastructure systems, and quantitative mathematics(Stochastic Processes, reinforcement learning, linear algebra, etc).
-- 🧠 I’m currently learning financial engineering, reverse engineering (c/c++, bash, assembly), and building projects with esp32/8266.
-- 🤝 I’m looking to develop projects with others. 
-- 📫 How to reach me email: hugo123baca@gmail.com or LinkedIn.
+- 👀 I’m interested in machine learning and mathematics(Stochastic Processes, reinforcement learning, linear algebra, etc).
+![Metrics](/github-metrics.svg)
+<p align="center"><img src="/github-metrics.svg" alt="Metrics" width="400"></p>
+<picture>
+  <img src="/github-metrics.svg" alt="Metrics">
+</picture>
+<img src="/github-metrics.svg" alt="Metrics" width="100%">
