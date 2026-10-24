@@ -122,7 +122,7 @@ jobs:
 
           MARKER_START='<!--METRICS_START-->'
           MARKER_END='<!--METRICS_END-->'
-          IMG_LINE='![GitHub Metrics](metrics.svg)'
+          IMG_LINE='<p align="center">\n  <img src="metrics.svg" width="100%" alt="Metrics" />\n</p>'
 
           README="README.md"
           if [[ ! -f "$README" ]]; then
