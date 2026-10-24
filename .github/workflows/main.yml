@@ -161,5 +161,6 @@ jobs:
           TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
           git commit -m "chore: auto‑update README & metrics.svg (${TIMESTAMP})"
 
-          # Push to the same branch that triggered the workflow
-          git push origin HEAD:${GITHUB_REF#refs/heads/}
+          # Push with --force-with-lease so we win the race if another run
+          # pushed a commit after our rebase but before our push.
+          git push origin HEAD:${GITHUB_REF#refs/heads/} --force-with-lease
