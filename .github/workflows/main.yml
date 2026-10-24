@@ -10,7 +10,7 @@ on:
   push:
     branches: [master, main]
 
-# The workflow needs write permission to push the updated README/metrics.svg
+# Needed to push the updated README / metrics.svg back to the repo
 permissions:
   contents: write
 
@@ -22,13 +22,14 @@ jobs:
 
     steps:
       # --------------------------------------------------------------
-      # 1️⃣  Checkout the repo **with a token** so we can commit later
+      # 1️⃣  Checkout the **branch** (not a detached commit) so we can push
       # --------------------------------------------------------------
-      - name: Checkout repository
+      - name: Checkout repository (branch)
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0            # full history → clean commit
+          fetch-depth: 0            # full history → clean rebase / push
+          ref: ${{ github.ref }}    # checkout the exact ref that triggered the run
 
       # --------------------------------------------------------------
       # 2️⃣  Bring the local branch up‑to‑date with the remote
@@ -36,8 +37,7 @@ jobs:
       - name: Sync with remote (rebase)
         run: |
           BRANCH="${GITHUB_REF#refs/heads/}"
-          git fetch origin "$BRANCH"
-          git rebase "origin/$BRANCH"
+          git pull --rebase origin "$BRANCH"
 
       # --------------------------------------------------------------
       # 3️⃣  Generate **metrics.svg** (your existing lowlighter/metrics step)
@@ -108,11 +108,11 @@ jobs:
       # --------------------------------------------------------------
       # 4️⃣  **Inject / refresh the SVG inside README.md**
       # --------------------------------------------------------------
-      # We look for a marker pair in README.md:
+      # Markers in README.md:
       #   <!--METRICS_START-->
       #   <!--METRICS_END-->
       # Everything between them is replaced with a fresh image link.
-      # If the markers are absent we prepend the image at the top of the file.
+      # If the markers are absent the image is prepended at the top.
       - name: Update README.md with new metrics.svg
         id: update_readme
         run: |
@@ -161,6 +161,5 @@ jobs:
           TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
           git commit -m "chore: auto‑update README & metrics.svg (${TIMESTAMP})"
 
-          # Push with --force-with-lease so we win the race if another run
-          # pushed a commit after our rebase but before our push.
-          git push origin HEAD:${GITHUB_REF#refs/heads/} --force-with-lease
+          # Normal push – fast‑forward because we rebased onto the latest remote tip
+          git push origin HEAD:${GITHUB_REF#refs/heads/}
