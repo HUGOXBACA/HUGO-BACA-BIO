@@ -9,7 +9,9 @@ on:
   # ── also run on normal pushes so the badge stays fresh ──
   push:
     branches: [master, main]
-
+concurrency:
+  group: metrics-${{ github.ref }}
+  cancel-in-progress: false
 # Needed to push the updated README / metrics.svg back to the repo
 permissions:
   contents: write
@@ -161,5 +163,5 @@ jobs:
           TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
           git commit -m "chore: auto‑update README & metrics.svg (${TIMESTAMP})"
 
-          # Normal push – fast‑forward because we rebased onto the latest remote tip
+          git pull --rebase origin "${GITHUB_REF#refs/heads/}"
           git push origin HEAD:${GITHUB_REF#refs/heads/}
