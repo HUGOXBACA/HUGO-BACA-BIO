@@ -31,7 +31,16 @@ jobs:
           fetch-depth: 0            # full history → clean commit
 
       # --------------------------------------------------------------
-      # 2️⃣  Generate **metrics.svg** (your existing lowlighter/metrics step)
+      # 2️⃣  Bring the local branch up‑to‑date with the remote
+      # --------------------------------------------------------------
+      - name: Sync with remote (rebase)
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          git fetch origin "$BRANCH"
+          git rebase "origin/$BRANCH"
+
+      # --------------------------------------------------------------
+      # 3️⃣  Generate **metrics.svg** (your existing lowlighter/metrics step)
       # --------------------------------------------------------------
       - name: Generate metrics.svg
         uses: lowlighter/metrics@latest
@@ -97,13 +106,13 @@ jobs:
           plugin_topics_sort: stars
 
       # --------------------------------------------------------------
-      # 3️⃣  **Inject / refresh the SVG inside README.md**
+      # 4️⃣  **Inject / refresh the SVG inside README.md**
       # --------------------------------------------------------------
       # We look for a marker pair in README.md:
       #   <!--METRICS_START-->
       #   <!--METRICS_END-->
       # Everything between them is replaced with a fresh image link.
-      # If the markers are absent we append the image at the top of the file.
+      # If the markers are absent we prepend the image at the top of the file.
       - name: Update README.md with new metrics.svg
         id: update_readme
         run: |
@@ -113,16 +122,13 @@ jobs:
           MARKER_END='<!--METRICS_END-->'
           IMG_LINE='![GitHub Metrics](metrics.svg)'
 
-          # Read current README
           README="README.md"
           if [[ ! -f "$README" ]]; then
             echo "# Hugo Baca" > "$README"
           fi
 
-          # Build the new block
           NEW_BLOCK="${MARKER_START}\n${IMG_LINE}\n${MARKER_END}"
 
-          # Use awk to replace the block (or prepend if markers missing)
           awk -v start="$MARKER_START" -v end="$MARKER_END" -v block="$NEW_BLOCK" '
             BEGIN { printed=0; in_block=0 }
             $0 ~ start { in_block=1; if (!printed) { print block; printed=1 } next }
@@ -134,7 +140,7 @@ jobs:
           echo "✅ README.md updated (markers ensured)."
 
       # --------------------------------------------------------------
-      # 4️⃣  Commit & push **only if something changed**
+      # 5️⃣  Commit & push **only if something changed**
       # --------------------------------------------------------------
       - name: Commit & push changes
         env:
